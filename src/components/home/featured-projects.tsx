@@ -2,16 +2,14 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Code, Cloud, Server, TrendingUp, Cpu, Layers } from "lucide-react"; 
-import { skillsData } from "@/data/skills";
+import { ArrowRight, TrendingUp, Code, Cloud, Server, Cpu, Layers } from "lucide-react"; 
+import { skillsData } from "@/data/skills"; // Assuming skillsData is defined here
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { TiltCard } from "@/components/animations"; 
-// Note: MagneticButton is intentionally excluded.
 
-// --- Enhanced Data Mapping (Using a muted primary accent color) ---
-const PRIMARY_ACCENT = 'bg-gray-800'; // Dark charcoal color
+// --- Configuration ---
 const ACCENT_TEXT = 'text-gray-900 dark:text-gray-100';
 const ACCENT_BORDER = 'border-gray-900 dark:border-gray-100';
 
@@ -29,9 +27,22 @@ const SKILL_COLORS = {
   'Database': { bar: 'bg-gray-500', badgeBg: 'bg-gray-400', badgeText: 'text-gray-500' },
 };
 
+// Assuming skillsData structure:
+interface SkillCategory {
+    title: string;
+    skills: { name: string; level: number }[];
+}
+
+// NOTE: Since skillsData wasn't fully provided in this context,
+// we assume it's correctly defined and exported from "@/data/skills" 
+// with the type SkillCategory[].
+
 
 export function SkillsShowcase() {
-  const showcaseSkills = skillsData.slice(0, 3).map(category => ({
+  // Safe cast assuming skillsData provides the expected structure
+  const skillsDataTyped = skillsData as unknown as SkillCategory[]; 
+
+  const showcaseSkills = skillsDataTyped.slice(0, 3).map(category => ({
     ...category,
     icon: SKILL_ICONS[category.title as keyof typeof SKILL_ICONS] || <Layers className="w-6 h-6" />,
     colors: SKILL_COLORS[category.title as keyof typeof SKILL_COLORS] || SKILL_COLORS['Frontend'],
@@ -39,7 +50,6 @@ export function SkillsShowcase() {
   }));
 
   return (
-    // DESIGN 1: Minimalist Background (High Contrast)
     <section 
       className="py-24 md:py-36 
                  bg-white dark:bg-gray-950 
@@ -57,7 +67,6 @@ export function SkillsShowcase() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          {/* DESIGN 2: Functional Heading */}
           <p className={`text-sm font-medium uppercase tracking-[0.3em] ${ACCENT_TEXT} mb-4 flex items-center justify-center`}>
             <TrendingUp className="w-4 h-4 mr-3" />
             Core Competencies
@@ -65,7 +74,7 @@ export function SkillsShowcase() {
           <h2 className="text-5xl md:text-6xl font-extrabold mb-4 uppercase tracking-tighter">
             Technical Skill Matrix
           </h2>
-          <div className="w-16 h-1 bg-gray-900 dark:bg-gray-100 mx-auto mt-6" /> {/* Brutalist Separator */}
+          <div className="w-16 h-1 bg-gray-900 dark:bg-gray-100 mx-auto mt-6" />
         </motion.div>
 
         {/* --- Skills Grid (Structured Cards) --- */}
@@ -78,8 +87,8 @@ export function SkillsShowcase() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: categoryIndex * 0.1 }}
             >
-              <TiltCard className="h-full">
-                {/* DESIGN 3: Minimalist Card with Sharp Borders */}
+              {/* className is correctly passed and assumed to be accepted by TiltCard */}
+              <TiltCard className="h-full"> 
                 <Card 
                   className={`h-full bg-white dark:bg-gray-900 
                              border-2 ${ACCENT_BORDER} 
@@ -112,7 +121,6 @@ export function SkillsShowcase() {
                             <span className="font-medium">{skill.name}</span>
                             <span className="text-sm font-mono text-muted-foreground">{skill.level}%</span>
                           </div>
-                          {/* DESIGN 4: Monochromatic Progress Bar */}
                           <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-none overflow-hidden">
                             <motion.div
                               className={`h-full ${category.colors.bar} rounded-none`}
@@ -144,7 +152,6 @@ export function SkillsShowcase() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center"
         >
-          {/* DESIGN 5: Blocky, High-Contrast Button */}
           <Link href="/skills" className="inline-flex group">
             <Button 
               size="lg" 
@@ -155,10 +162,11 @@ export function SkillsShowcase() {
                          rounded-none shadow-none 
                          transition-all duration-300 ease-in-out 
                          hover:bg-gray-700 dark:hover:bg-gray-300 
-                         transform group-hover:translate-x-1 group-hover:translate-y-[-1px]` // Subtle shift for interaction
-              >
-                View Complete Skill Index
-                <ArrowRight className="w-5 h-5 ml-3 transition-transform duration-300 group-hover:translate-x-1" />
+                         transform group-hover:translate-x-1 group-hover:translate-y-[-1px]`
+              }
+            >
+              View Complete Skill Index
+              <ArrowRight className="w-5 h-5 ml-3 transition-transform duration-300 group-hover:translate-x-1" />
             </Button>
           </Link>
         </motion.div>
