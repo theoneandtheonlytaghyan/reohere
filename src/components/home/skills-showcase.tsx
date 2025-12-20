@@ -1,8 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 
-const skills = [
+// Define type for skill object
+interface Skill {
+  name: string;
+  logo: string;
+}
+
+const skills: Skill[] = [
   { name: "HTML", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" },
   { name: "CSS", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" },
   { name: "JavaScript", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" },
@@ -65,7 +72,9 @@ export function SkillsShowcase() {
 }
 
 // SkillIcon component with light effect
-function SkillIcon({ skill }) {
+function SkillIcon({ skill }: { skill: Skill }) {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <div className="flex flex-col items-center group">
       <div className="relative">
@@ -75,19 +84,22 @@ function SkillIcon({ skill }) {
         </div>
         
         <div className="relative z-10">
-          <Image
-            src={skill.logo}
-            alt={skill.name}
-            width={64}
-            height={64}
-            className="object-contain transition-transform duration-300 group-hover:scale-110"
-            unoptimized
-            onError={(e) => {
-              console.error(`Failed to load image for ${skill.name}`);
-              // Fallback to a placeholder if image fails to load
-              e.currentTarget.src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="white"><text x="50%" y="50%" font-size="10" text-anchor="middle" dy=".3em" fill="white">${skill.name}</text></svg>`;
-            }}
-          />
+          {imgError ? (
+            // Fallback if image fails to load
+            <div className="w-16 h-16 flex items-center justify-center bg-gray-800 rounded-full">
+              <span className="text-xs text-white text-center px-1">{skill.name}</span>
+            </div>
+          ) : (
+            <Image
+              src={skill.logo}
+              alt={skill.name}
+              width={64}
+              height={64}
+              className="object-contain transition-transform duration-300 group-hover:scale-110"
+              unoptimized
+              onError={() => setImgError(true)}
+            />
+          )}
         </div>
       </div>
       <span className="mt-2 text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
