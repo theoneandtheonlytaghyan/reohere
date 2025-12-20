@@ -2,92 +2,102 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { ShootingStars } from "@/components/ui/shooting-stars";
+import { StarsBackground } from "@/components/ui/stars-background";
 
-// Define type for skill object
+// Skill type
 interface Skill {
   name: string;
   logo: string;
 }
 
 const skills: Skill[] = [
-  { name: "HTML", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" },
-  { name: "CSS", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" },
-  { name: "JavaScript", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" },
-  { name: "TypeScript", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" },
-  { name: "React", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" },
-  { name: "Next.js", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original.svg" },
-  { name: "Tailwind", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-original.svg" },
-  { name: "Framer Motion", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/framer/framer-original.svg" },
-  { name: "Material UI", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/materialui/materialui-original.svg" },
-  { name: "Flask", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/flask/flask-original.svg" },
-  { name: "MySQL", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" },
-  { name: "Firebase", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/firebase/firebase-plain.svg" },
-  { name: "AWS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" },
-  { name: "Vercel", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/vercel/vercel-original.svg" },
-  { name: "Git", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" },
-  { name: "GitHub", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" },
-  { name: "Python", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" },
-  { name: "Pandas", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg" },
-  { name: "NumPy", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" },
-  { name: "Matplotlib", logo: "https://upload.wikimedia.org/wikipedia/commons/8/84/Matplotlib_icon.svg" },
+  { name: "HTML", logo: "https://skillicons.dev/icons?i=html" },
+  { name: "CSS", logo: "https://skillicons.dev/icons?i=css" },
+  { name: "JavaScript", logo: "https://skillicons.dev/icons?i=js" },
+  { name: "TypeScript", logo: "https://skillicons.dev/icons?i=ts" },
+  { name: "React", logo: "https://skillicons.dev/icons?i=react" },
+  { name: "Next.js", logo: "https://skillicons.dev/icons?i=nextjs&theme=light" },
+  { name: "Tailwind", logo: "https://skillicons.dev/icons?i=tailwind" },
+  { name: "Material UI", logo: "https://skillicons.dev/icons?i=materialui" },
+  { name: "Flask", logo: "https://skillicons.dev/icons?i=flask&theme=dark" },
+  { name: "MySQL", logo: "https://skillicons.dev/icons?i=mysql" },
+  { name: "Firebase", logo: "https://skillicons.dev/icons?i=firebase" },
+  { name: "AWS", logo: "https://skillicons.dev/icons?i=aws" },
+  { name: "Vercel", logo: "https://skillicons.dev/icons?i=vercel&theme=light" },
+  { name: "Git", logo: "https://skillicons.dev/icons?i=git" },
+  { name: "GitHub", logo: "https://skillicons.dev/icons?i=github&theme=light" },
+  { name: "Python", logo: "https://skillicons.dev/icons?i=python" },
+  { name: "Pandas", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
+  { name: "NumPy", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
+  { name: "Matplotlib", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/matplotlib/matplotlib-original.svg" },
 ];
 
 export function SkillsShowcase() {
-  // Split skills into rows: 8, 6, 5
-  const firstRow = skills.slice(0, 8);
-  const secondRow = skills.slice(8, 14);
-  const thirdRow = skills.slice(14, 19);
+  const rows = [
+    skills.slice(0, 7),
+    skills.slice(7, 12),
+    skills.slice(12, 16),
+    skills.slice(16, 19),
+  ];
 
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-screen bg-black text-white py-20">
-      <div className="text-center mb-16 z-10">
-        <h2 className="text-6xl font-extrabold mb-3 tracking-tight">Technical Skills</h2>
-        <p className="text-gray-400 text-lg font-light">Skills I have mastered yet</p>
+    <section className="relative flex flex-col items-center justify-center min-h-screen bg-black text-white py-20 px-6 overflow-hidden">
+      {/* 🌌 Shooting Stars + Star Background */}
+      <ShootingStars />
+      <StarsBackground />
+
+      {/* Subtle radial vignette for focus */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.85),transparent_85%)] pointer-events-none" />
+
+      {/* Content */}
+      <div className="relative z-10 text-center mb-16">
+        <h2 className="text-5xl md:text-6xl font-extrabold mb-3 tracking-tight">
+          Technical Skills
+        </h2>
+        <p className="text-gray-400 text-lg font-light">
+          Skills I have mastered yet
+        </p>
       </div>
 
-      <div className="w-full max-w-6xl flex flex-col items-center justify-center space-y-12">
-        {/* First row with 8 icons */}
-        <div className="flex justify-center space-x-8">
-          {firstRow.map((skill) => (
-            <SkillIcon key={skill.name} skill={skill} />
-          ))}
-        </div>
-
-        {/* Second row with 6 icons */}
-        <div className="flex justify-center space-x-12">
-          {secondRow.map((skill) => (
-            <SkillIcon key={skill.name} skill={skill} />
-          ))}
-        </div>
-
-        {/* Third row with 5 icons */}
-        <div className="flex justify-center space-x-16">
-          {thirdRow.map((skill) => (
-            <SkillIcon key={skill.name} skill={skill} />
-          ))}
-        </div>
+      <div className="relative z-10 w-full max-w-6xl flex flex-col items-center justify-center space-y-12">
+        {rows.map((row, i) => (
+          <div
+            key={i}
+            className="flex flex-wrap justify-center gap-8 md:gap-12"
+          >
+            {row.map((skill) => (
+              <SkillIcon key={skill.name} skill={skill} />
+            ))}
+          </div>
+        ))}
       </div>
+
+      {/* Soft top/bottom glow for cinematic depth */}
+      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black via-transparent to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none" />
     </section>
   );
 }
 
-// SkillIcon component with light effect
+// Skill Icon Component
 function SkillIcon({ skill }: { skill: Skill }) {
   const [imgError, setImgError] = useState(false);
 
   return (
     <div className="flex flex-col items-center group">
       <div className="relative">
-        {/* Light effect coming out of the side */}
+        {/* glow ring */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-16 h-16 bg-gradient-to-r from-white/30 to-transparent rounded-full blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-16 h-16 bg-gradient-to-r from-white/20 to-transparent rounded-full blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
-        
+
         <div className="relative z-10">
           {imgError ? (
-            // Fallback if image fails to load
             <div className="w-16 h-16 flex items-center justify-center bg-gray-800 rounded-full">
-              <span className="text-xs text-white text-center px-1">{skill.name}</span>
+              <span className="text-xs text-white text-center px-1">
+                {skill.name}
+              </span>
             </div>
           ) : (
             <Image
@@ -102,6 +112,7 @@ function SkillIcon({ skill }: { skill: Skill }) {
           )}
         </div>
       </div>
+
       <span className="mt-2 text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         {skill.name}
       </span>

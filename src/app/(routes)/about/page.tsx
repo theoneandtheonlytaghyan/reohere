@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { About } from "@/components/sections/about";
-import { Skills } from "@/components/sections/skills";
+import { SkillsShowcase} from "@/components/sections/skills";
 import { Achievements } from "@/components/sections/achievements";
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export default function AboutPage() {
     <>
       <div className="pt-20">
         <About />
-        <Skills />
+        <SkillsShowcase />
         <Achievements />
       </div>
     </>

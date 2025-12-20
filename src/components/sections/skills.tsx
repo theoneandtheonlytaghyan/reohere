@@ -1,149 +1,112 @@
+
 "use client";
 
-import { motion } from "framer-motion";
-import { skillsData } from "@/data/skills";
-import { ANIMATION_VARIANTS } from "@/lib/constants";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TiltCard } from "@/components/animations";
+import Image from "next/image";
+import { useState } from "react";
 
-const categoryDescriptions: Record<string, string> = {
-  "Programming Languages": "Proficient in multiple paradigms including OOP, functional, and procedural programming",
-  "Frontend Development": "Creating responsive, interactive, and performant user interfaces with modern frameworks",
-  "Backend & Databases": "Building scalable server-side applications and managing both SQL and NoSQL databases",
-  "Cloud & DevOps": "Expertise in multi-cloud environments with focus on automation and infrastructure as code",
-  "ML & Data Science": "Developing intelligent systems using deep learning, neural networks, and data analysis",
-  "Blockchain & Web3": "Building decentralized applications and smart contracts on various blockchain platforms"
-};
+// Skill type
+interface Skill {
+  name: string;
+  logo: string;
+}
 
-const getProficiencyLevel = (level: number) => {
-  if (level >= 90) return { text: "Expert", color: "text-teal" };
-  if (level >= 80) return { text: "Advanced", color: "text-lavender" };
-  if (level >= 70) return { text: "Proficient", color: "text-primary" };
-  return { text: "Learning", color: "text-muted-foreground" };
-};
+// Bright icons for dark background
+const skills: Skill[] = [
+  { name: "HTML", logo: "https://skillicons.dev/icons?i=html" },
+  { name: "CSS", logo: "https://skillicons.dev/icons?i=css" },
+  { name: "JavaScript", logo: "https://skillicons.dev/icons?i=js" },
+  { name: "TypeScript", logo: "https://skillicons.dev/icons?i=ts" },
+  { name: "React", logo: "https://skillicons.dev/icons?i=react" },
+  { name: "Next.js", logo: "https://skillicons.dev/icons?i=nextjs&theme=light" },
+  { name: "Tailwind", logo: "https://skillicons.dev/icons?i=tailwind" },
 
-export function Skills() {
+  { name: "Material UI", logo: "https://skillicons.dev/icons?i=materialui" },
+  { name: "Flask", logo: "https://skillicons.dev/icons?i=flask&theme=dark" },
+  { name: "MySQL", logo: "https://skillicons.dev/icons?i=mysql" },
+  { name: "Firebase", logo: "https://skillicons.dev/icons?i=firebase" },
+  { name: "AWS", logo: "https://skillicons.dev/icons?i=aws" },
+  { name: "Vercel", logo: "https://skillicons.dev/icons?i=vercel&theme=light" },
+
+  { name: "Git", logo: "https://skillicons.dev/icons?i=git" },
+  { name: "GitHub", logo: "https://skillicons.dev/icons?i=github&theme=light" },
+  { name: "Python", logo: "https://skillicons.dev/icons?i=python" },
+  { name: "Pandas", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
+{ name: "NumPy", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
+{ name: "Matplotlib", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/matplotlib/matplotlib-original.svg" },
+];
+
+export function SkillsShowcase() {
+  // auto split evenly based on screen
+  const rows = [
+    skills.slice(0, 7),
+    skills.slice(7, 12),
+    skills.slice(12, 16),
+    skills.slice(16, 19),
+  ];
+
   return (
-    <section className="py-20 px-4 bg-muted/30">
-      <div className="container mx-auto max-w-7xl">
-        {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={ANIMATION_VARIANTS.fadeUp}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-            Technical <span className="gradient-text">Skills</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            A comprehensive toolkit spanning cloud computing, frontend development,
-            machine learning, and blockchain technologies. Continuously learning and adapting to new technologies.
-          </p>
-        </motion.div>
+    <section className="relative flex flex-col items-center justify-center min-h-screen bg-black text-white py-20 px-6">
+      <div className="text-center mb-16 z-10">
+        <h2 className="text-5xl md:text-6xl font-extrabold mb-3 tracking-tight">
+          Technical Skills
+        </h2>
+        <p className="text-gray-400 text-lg font-light">
+          Skills I have mastered yet
+        </p>
+      </div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {skillsData.map((category, categoryIndex) => (
-            <motion.div
-              key={category.title}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={ANIMATION_VARIANTS.fadeUp}
-              transition={{ delay: categoryIndex * 0.1 }}
-            >
-              <TiltCard className="h-full">
-                <Card className="h-full hover:shadow-xl transition-all duration-300 border-border/50 hover:border-primary/50 group">
-                  <CardHeader className="pb-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center">
-                        <span className="text-3xl mr-3">{category.icon}</span>
-                        <CardTitle className="text-xl">{category.title}</CardTitle>
-                      </div>
-                      <Badge variant="outline" className="text-xs border-lavender/50 badge-lavender-outline">
-                        {category.skills.length} skills
-                      </Badge>
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      {categoryDescriptions[category.title]}
-                    </p>
-                  </CardHeader>
-                  
-                  <CardContent>
-                    <div className="space-y-4">
-                      {category.skills.map((skill, skillIndex) => {
-                        const proficiency = getProficiencyLevel(skill.level);
-                        return (
-                          <div key={skill.name} className="space-y-2">
-                            <div className="flex justify-between items-center">
-                              <span className="text-sm font-medium flex items-center gap-2">
-                                {skill.icon && <span className="text-lg">{skill.icon}</span>}
-                                {skill.name}
-                              </span>
-                              <div className="flex items-center gap-2">
-                                <span className={`text-xs font-medium ${proficiency.color}`}>
-                                  {proficiency.text}
-                                </span>
-                                <span className="text-xs text-muted-foreground">
-                                  {skill.level}%
-                                </span>
-                              </div>
-                            </div>
-                            <div className="relative h-2.5 bg-muted rounded-full overflow-hidden">
-                              <motion.div
-                                className="absolute inset-y-0 left-0 bg-gradient-to-r from-lavender via-teal to-lavender rounded-full"
-                                initial={{ width: 0 }}
-                                whileInView={{ width: `${skill.level}%` }}
-                                viewport={{ once: true }}
-                                transition={{
-                                  duration: 1.2,
-                                  delay: categoryIndex * 0.1 + skillIndex * 0.05,
-                                  ease: "easeOut"
-                                }}
-                              />
-                              <div 
-                                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                                style={{
-                                  animation: "shimmer 2s infinite",
-                                  animationDelay: `${skillIndex * 0.1}s`
-                                }}
-                              />
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                    
-                    {/* Category Stats */}
-                    <div className="mt-6 pt-4 border-t border-border/50">
-                      <div className="flex justify-between text-xs text-muted-foreground">
-                        <span>Average Proficiency</span>
-                        <span className="font-medium text-foreground">
-                          {Math.round(category.skills.reduce((acc, skill) => acc + skill.level, 0) / category.skills.length)}%
-                        </span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TiltCard>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Additional Skills Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="mt-12 text-center"
-        >
-          
-        </motion.div>
+      <div className="w-full max-w-6xl flex flex-col items-center justify-center space-y-12">
+        {rows.map((row, i) => (
+          <div
+            key={i}
+            className="flex flex-wrap justify-center gap-8 md:gap-12"
+          >
+            {row.map((skill) => (
+              <SkillIcon key={skill.name} skill={skill} />
+            ))}
+          </div>
+        ))}
       </div>
     </section>
+  );
+}
+
+// icon component
+function SkillIcon({ skill }: { skill: Skill }) {
+  const [imgError, setImgError] = useState(false);
+
+  return (
+    <div className="flex flex-col items-center group">
+      <div className="relative">
+        {/* glow effect */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-16 h-16 bg-gradient-to-r from-white/20 to-transparent rounded-full blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+
+        <div className="relative z-10">
+          {imgError ? (
+            <div className="w-16 h-16 flex items-center justify-center bg-gray-800 rounded-full">
+              <span className="text-xs text-white text-center px-1">
+                {skill.name}
+              </span>
+            </div>
+          ) : (
+            <Image
+              src={skill.logo}
+              alt={skill.name}
+              width={64}
+              height={64}
+              className="object-contain transition-transform duration-300 group-hover:scale-110"
+              unoptimized
+              onError={() => setImgError(true)}
+            />
+          )}
+        </div>
+      </div>
+
+      <span className="mt-2 text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        {skill.name}
+      </span>
+    </div>
   );
 }

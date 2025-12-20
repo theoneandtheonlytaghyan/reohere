@@ -5,6 +5,8 @@ import Link from "next/link";
 import { ArrowUpRight, Sparkles, Cpu, Code2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ShootingStars } from "@/components/ui/shooting-stars";
+import { StarsBackground } from "@/components/ui/stars-background";
 
 import { projects as allProjects, type Project } from "@/data/projects";
 
@@ -16,25 +18,27 @@ const CATEGORY_LABEL: Record<Project["category"], string> = {
 };
 
 export function FeaturedProjects() {
-  // if you want only some, you can slice/filter here
-  const projects = allProjects; // or allProjects.slice(0, 3)
+  const projects = allProjects;
 
   return (
     <section
       id="projects"
       className="relative py-24 md:py-28 bg-black text-white overflow-hidden"
     >
-      {/* subtle radial glow */}
-      <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-screen">
-        <div className="absolute -inset-40 bg-[radial-gradient(circle_at_top,_#1f2937_0,_#000_55%)]" />
-      </div>
+      {/* 🌌 Starry Black Background */}
+      <ShootingStars />
+      <StarsBackground />
 
-      {/* faint grid */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.06]">
+      {/* Subtle radial dark glow for focus */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.75),transparent_80%)]" />
+
+      {/* faint grid overlay */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.05]">
         <div className="h-full w-full bg-[linear-gradient(to_right,#333_1px,transparent_1px),linear-gradient(to_bottom,#333_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
 
-      <div className="relative container mx-auto px-4 md:px-6">
+      {/* Content */}
+      <div className="relative container mx-auto px-4 md:px-6 z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
@@ -52,17 +56,16 @@ export function FeaturedProjects() {
               Featured <span className="text-zinc-400">Projects</span>
             </h2>
             <p className="mt-3 max-w-xl text-sm md:text-base text-zinc-400">
-  Frontend-focused projects where I craft{" "}
-  <span className="font-semibold text-zinc-100">
-    interactive, scalable UI
-  </span>{" "}
-  with{" "}
-  <span className="font-semibold text-zinc-100">
-    clean design systems
-  </span>{" "}
-  and smooth user flows — from portfolios to full-scale platforms.
-</p>
-
+              Frontend-focused projects where I craft{" "}
+              <span className="font-semibold text-zinc-100">
+                interactive, scalable UI
+              </span>{" "}
+              with{" "}
+              <span className="font-semibold text-zinc-100">
+                clean design systems
+              </span>{" "}
+              and smooth user flows — from portfolios to full-scale platforms.
+            </p>
           </div>
 
           <div className="flex flex-col items-start md:items-end gap-3 text-xs md:text-sm text-zinc-400">
@@ -115,7 +118,6 @@ export function FeaturedProjects() {
                 </CardHeader>
 
                 <CardContent className="space-y-4 pt-1">
-                  {/* Tech stack badges */}
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.slice(0, 5).map((tech) => (
                       <Badge
@@ -136,7 +138,6 @@ export function FeaturedProjects() {
                     )}
                   </div>
 
-                  {/* Key features (first 2–3) */}
                   <ul className="space-y-1.5 text-xs text-zinc-300">
                     {project.features.slice(0, 3).map((feature) => (
                       <li key={feature} className="flex gap-2">
@@ -146,7 +147,6 @@ export function FeaturedProjects() {
                     ))}
                   </ul>
 
-                  {/* Links */}
                   <div className="flex items-center justify-between pt-2 text-xs text-zinc-400">
                     <span className="font-mono truncate max-w-[40%]">
                       {project.category.toUpperCase()}
