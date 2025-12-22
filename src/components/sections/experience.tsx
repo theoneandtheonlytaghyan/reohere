@@ -67,8 +67,7 @@ export function Experience() {
                 
                 <p className="text-muted-foreground mb-4">{exp.description}</p>
                 
-                <div className="space-y-2 mb-4">
-                  {exp.achievements.map((achievement, i) => (
+                <div className="space-y-2 mb-4">                  {exp.achievements.map((achievement: string, i: number) => (
                     <div key={i} className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
                       <p className="text-sm">{achievement}</p>
