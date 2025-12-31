@@ -39,7 +39,7 @@ export function SkillsShowcase() {
   return (
     <section className="relative flex flex-col items-center justify-center min-h-screen bg-black text-white py-20 px-6">
       <div className="text-center mb-16 z-10">
-        <h2 className="text-6xl font-extrabold mb-3 tracking-tight">
+        <h2 className="text-5xl md:text-6xl font-extrabold mb-3 tracking-tight">
           Technical Skills
         </h2>
         <p className="text-gray-400 text-lg font-light">
@@ -47,11 +47,11 @@ export function SkillsShowcase() {
         </p>
       </div>
 
-      <div className="w-[1200px] flex flex-col items-center justify-center space-y-12">
+      <div className="w-full max-w-6xl flex flex-col items-center justify-center space-y-12">
         {rows.map((row, i) => (
           <div
             key={i}
-            className="flex flex-wrap justify-center gap-12"
+            className="flex flex-wrap justify-center gap-8 md:gap-12"
           >
             {row.map((skill) => (
               <SkillIcon key={skill.name} skill={skill} />

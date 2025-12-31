@@ -8,7 +8,7 @@ import { Calendar, MapPin, Building2 } from "lucide-react";
 export function Experience() {
   return (
     <section className="py-20 px-4">
-      <div className="w-[1200px] mx-auto">
+      <div className="container mx-auto max-w-4xl">
         {/* Section Header */}
         <motion.div
           initial="hidden"
@@ -17,7 +17,7 @@ export function Experience() {
           variants={ANIMATION_VARIANTS.fadeUp}
           className="text-center mb-12"
         >
-            <h2 className="text-5xl font-display font-bold mb-4">
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
             Work <span className="gradient-text">Experience</span>
           </h2>
          
@@ -26,7 +26,7 @@ export function Experience() {
         {/* Experience Timeline */}
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-border" />
+          <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-border" />
 
           {experienceData.map((exp, index) => (
             <motion.div
@@ -37,13 +37,13 @@ export function Experience() {
               variants={ANIMATION_VARIANTS.fadeUp}
               transition={{ delay: index * 0.2 }}
               className={`relative flex items-center justify-between mb-8 ${
-                index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
               }`}
             >              {/* Timeline Dot */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background" />
+              <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background" />
               
               {/* Content Card */}
-              <div className="w-5/12 p-6 rounded-xl border bg-card hover:shadow-lg transition-shadow">
+              <div className="ml-8 md:ml-0 md:w-5/12 p-6 rounded-xl border bg-card hover:shadow-lg transition-shadow">
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h3 className="text-xl font-semibold">{exp.role}</h3>
@@ -90,7 +90,7 @@ export function Experience() {
               </div>
               
               {/* Empty space for timeline alignment */}
-              <div className="w-5/12" />
+              <div className="hidden md:block md:w-5/12" />
             </motion.div>
           ))}
         </div>

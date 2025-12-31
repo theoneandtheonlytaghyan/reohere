@@ -34,7 +34,7 @@ export function Projects() {
 
   return (
     <section className="py-20 px-4 bg-muted/30">
-      <div className="w-[1200px] mx-auto">
+      <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <motion.div
           initial="hidden"
@@ -43,7 +43,7 @@ export function Projects() {
           variants={ANIMATION_VARIANTS.fadeUp}
           className="text-center mb-12 w-full"
         >
-          <h2 className=" text-5xl font-display font-bold mb-4">
+          <h2 className=" text-4xl md:text-5xl font-display font-bold mb-4">
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -81,7 +81,7 @@ export function Projects() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {filteredProjects.map((project, index) => (
               <motion.div

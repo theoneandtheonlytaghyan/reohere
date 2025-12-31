@@ -9,7 +9,7 @@ import { ScrollReveal, GradientText } from "@/components/animations";
 export function About() {
   return (
     <section className="py-20 px-4">
-      <div className="w-[1200px] mx-auto">
+      <div className="container mx-auto max-w-6xl">
 
         <ScrollReveal delay={0.1}>
           <motion.div
@@ -19,7 +19,7 @@ export function About() {
             variants={ANIMATION_VARIANTS.fadeUp}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl font-display font-bold mb-4">
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
               About <GradientText>Me</GradientText>
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -37,7 +37,7 @@ export function About() {
           transition={{ delay: 0.2 }}
           className="mb-16"
         >
-          <div className="grid grid-cols-2 gap-12 items-start">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
 
             <div className="space-y-6 text-lg leading-relaxed">
               <p>

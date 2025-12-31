@@ -163,14 +163,11 @@
   }
   body {
     @apply bg-background text-foreground;
-    min-width: 1200px;
-    overflow-x: auto;
   }
 }
 
 html {
   scroll-behavior: smooth;
-  min-width: 1200px;
 }
 
 /* Custom styles for lavender and teal theme */

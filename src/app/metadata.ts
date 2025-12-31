@@ -59,9 +59,8 @@ export const generateMetadata = (): Metadata => {
       creator: "@taghyan",
     },
     viewport: {
-      width: "1200",
+      width: "device-width",
       initialScale: 1,
-      userScalable: true,
     },
     robots: {
       index: true,

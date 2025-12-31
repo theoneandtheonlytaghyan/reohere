@@ -52,7 +52,7 @@ export function Navbar() {
           exit={{ y: -100, opacity: 0 }}
           transition={{ duration: 0.25 }}
           className={cn(
-            "fixed top-3 left-1/2 -translate-x-1/2 w-[1140px] z-50 rounded-2xl py-3 px-4 transition-all bg-black/60 backdrop-blur-xl border border-white/10 shadow-lg"
+            "fixed top-3 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 rounded-2xl py-3 px-4 transition-all bg-black/60 backdrop-blur-xl border border-white/10 shadow-lg"
           )}
         >
           <div className="flex items-center justify-between">
@@ -63,13 +63,13 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               className="font-display text-xl font-bold transition-all hover:opacity-80"
             >
-              <span className="gradient-text tracking-tight">
+              <span className="gradient-text tracking-tight text-lg sm:text-xl">
                 Abdulrahman Taghyan
               </span>
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="flex gap-6">
+            <div className="hidden md:flex gap-6">
               {NAV_ITEMS.map((item) => {
                 const active = pathname === item.href;
                 return (
@@ -102,7 +102,7 @@ export function Navbar() {
             </div>
 
             {/* Resume button */}
-            <div className="flex items-center">
+            <div className="hidden md:flex items-center">
               <a
                 href="/resume/resume.pdf"
                 target="_blank"
@@ -118,8 +118,8 @@ export function Navbar() {
               </a>
             </div>
 
-            {/* Mobile Menu Hidden */}
-            <div className="hidden">
+            {/* Mobile Menu */}
+            <div className="flex md:hidden">
               <Sheet open={open} onOpenChange={setOpen}>
                 <SheetTrigger asChild>
                   <Button

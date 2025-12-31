@@ -7,8 +7,8 @@ export function Footer() {
 
   return (
     <footer className="mt-auto border-t bg-background">
-      <div className="w-[1200px] mx-auto px-4 py-8">
-        <div className="grid grid-cols-3 gap-8">
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {/* About Section */}
           <div className="space-y-3">
             <h3 className="font-display text-lg font-bold gradient-text">
@@ -83,10 +83,10 @@ export function Footer() {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 1200 1227"
+                  viewBox="0 0 24 24"
                   className="h-5 w-5 fill-current"
                 >
-                  <path d="M714.163 0h281.137L485.197 515.342 1080 1227H796.863L..."></path>
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
                 </svg>
               </a>
             </div>
