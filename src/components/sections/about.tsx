@@ -37,9 +37,9 @@ export function About() {
           transition={{ delay: 0.2 }}
           className="mb-16"
         >
-          <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
 
-            <div className="space-y-6 text-lg leading-relaxed">
+            <div className="space-y-6 text-lg leading-relaxed order-2 md:order-1">
               <p>
                 Hi! I&apos;m Abdulrahman Taghyan, a Computer Science student at Shorouk Academy and a Machine Learning Engineer.
                 I specialize in building AI-powered systems with real-world impact, focusing on NLP, computer vision, and large-scale deep learning.
@@ -56,9 +56,9 @@ export function About() {
               </p>
             </div>
 
-            <div className="relative flex flex-col items-center">
-              <div className="absolute -top-24">
-                <div className="relative w-75 h-75 rounded-full p-[4px] bg-gradient-to-br from-primary via-purple-500 to-blue-500 shadow-2xl">
+            <div className="relative flex flex-col items-center order-1 md:order-2">
+              <div className="relative md:absolute md:-top-24 mb-8 md:mb-0">
+                <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-75 md:h-75 rounded-full p-[4px] bg-gradient-to-br from-primary via-purple-500 to-blue-500 shadow-2xl">
                   <div className="rounded-full overflow-hidden w-full h-full">
                     <img
                       src="/me/me.jpeg"
@@ -68,9 +68,8 @@ export function About() {
                   </div>
                 </div>
               </div>
-              <br /><br /><br />
 
-              <div className="pt-40 w-full space-y-4">
+              <div className="md:pt-40 w-full space-y-4">
                 {educationData.map((edu, index) => (
                   <motion.div
                     key={edu.id}
