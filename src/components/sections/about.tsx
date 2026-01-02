@@ -37,7 +37,7 @@ export function About() {
           transition={{ delay: 0.2 }}
           className="mb-16"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
             <div className="space-y-6 text-lg leading-relaxed order-2 md:order-1">
               <p>
@@ -56,9 +56,9 @@ export function About() {
               </p>
             </div>
 
-            <div className="relative flex flex-col items-center order-1 md:order-2">
-              <div className="relative md:absolute md:-top-24 mb-8 md:mb-0">
-                <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-75 md:h-75 rounded-full p-[4px] bg-gradient-to-br from-primary via-purple-500 to-blue-500 shadow-2xl">
+            <div className="flex flex-col items-center order-1 md:order-2 space-y-8">
+              <div className="relative">
+                <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full p-[4px] bg-gradient-to-br from-primary via-purple-500 to-blue-500 shadow-2xl">
                   <div className="rounded-full overflow-hidden w-full h-full">
                     <img
                       src="/me/me.jpeg"
@@ -69,7 +69,7 @@ export function About() {
                 </div>
               </div>
 
-              <div className="md:pt-40 w-full space-y-4">
+              <div className="w-full space-y-4">
                 {educationData.map((edu, index) => (
                   <motion.div
                     key={edu.id}
